@@ -25,4 +25,3 @@ userControllar.login
 router.get('/profile',authMidelware.authuser, userControllar.getUserProfile)
 router.get('/logout',authMidelware.authuser,userControllar.logoutUser)
 module.exports = router
-

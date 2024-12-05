@@ -1,7 +1,10 @@
 const userModel = require('../Models/User.model.js')
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt');
+
 const BlacklistTokenModale = require('../Models/BlacklistToken.modale.js');
+const JWT_SECRET = process.env.JWT_SECRET
+
+
 
 
 module.exports.authuser = async (req, res, next) => {
@@ -15,7 +18,7 @@ module.exports.authuser = async (req, res, next) => {
         return res.status(401).json({ message: 'Unauthorized.' })
     }
     try{
-        const decoded = jwt.verify(token, SECRETKEY);
+        const decoded = jwt.verify(token, JWT_SECRET);
         const user = await userModel.findById(decoded._id)
 
         req.user = user;

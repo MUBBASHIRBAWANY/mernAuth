@@ -6,7 +6,7 @@ const cors = require("cors")
 const userRoute = require("./Routes/userRoutes.js")
 const cookieparser = require("cookie-parser")
 const port = process.env.PORT 
-
+const captionRoute = require('./Routes/captionRoute.js')
 
 app.use(express.json());
 app.use(cors())
@@ -18,5 +18,8 @@ app.get("/",(req,res)=>{
 })
 
 app.use('/user', userRoute)
+app.use('/caption', captionRoute)
+
+
 
 module.exports = app
