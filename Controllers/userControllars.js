@@ -4,7 +4,7 @@ const { validationResult } = require('express-validator')
 const blacklistToken = require('../Models/BlacklistToken.modale.js')
 
 module.exports.registerUser = async (req,res,next) =>{
-    const error = validationResult(req.body);
+    const error = validationResult(req);
     
     if (!error.isEmpty()) {
         return res.status(400).json({ errors: error.array() });
@@ -28,11 +28,7 @@ module.exports.registerUser = async (req,res,next) =>{
 
 
 module.exports.login = async (req,res,next) =>{
-        const errors = validationResult(req.body)
-        console.log(errors)
-        if(!errors.isEmpty()){
-            return res.status(400).send({errors : errors.array()})
-        }
+        
         const {email, password} = req.body;
     const user = await userModel.findOne({email}).select('+password')
         if(!user){
@@ -45,9 +41,8 @@ module.exports.login = async (req,res,next) =>{
 
     const token = user.generateAuthToken();
 
-    res.cookie('token', token)
-
-    res.status(200).send({token, user})
+    
+    res.status(201).send({token, user})
 }
 
 module.exports.getUserProfile = async (req,res, next)=>{
