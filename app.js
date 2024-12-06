@@ -14,7 +14,7 @@ app.use(cookieparser())
 app.use(express.urlencoded({extended : true}))
 
 app.get("/",(req,res)=>{
-    res.send(`server run at ${port}`)
+    res.send(`server run at ${3000}`)
 })
 
 app.use('/user', userRoute)
