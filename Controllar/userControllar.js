@@ -3,7 +3,6 @@ import userSchema, { getAuthontication } from "../Models/userModel.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
-const JWT_SECRET = process.env.JWT_SECRET;
 
 const User = userSchema
 
@@ -37,7 +36,7 @@ export const userProfile = async (req, res) => {
             return res.status(403).send("Invalid Token");
         }
 
-        jwt.verify(token, JWT_SECRET, (err, decoded) => {
+        jwt.verify(token, "uber_CLone", (err, decoded) => {
             if (err) {
                 return res.status(403).send("Invalid Token");
             }
