@@ -32,7 +32,7 @@ export const comparePassword = (password) =>{
 
 export const getAuthontication = async function(val){
     
-    const token = jwt.sign({val}, process.env.JWT_SECRET, {expiresIn : "1300s"})
+    const token = jwt.sign({val}, "uber-Clone", {expiresIn : "1300s"})
     
     return token
 } 
