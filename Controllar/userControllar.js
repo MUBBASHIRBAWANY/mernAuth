@@ -32,11 +32,13 @@ export const userRegister = async (req, res) => {
 export const userProfile = async (req, res) => {
     try {
         const token = req.cookies?.token || req.headers.authorization?.split(" ")[1];
+        
         if (!token) {
+            console.log("object")
             return res.status(403).send("Invalid Token");
         }
 
-        jwt.verify(token, "uber_CLone", (err, decoded) => {
+        jwt.verify(token, "uber-Clone", (err, decoded) => {
             if (err) {
                 return res.status(403).send("Invalid Token");
             }
