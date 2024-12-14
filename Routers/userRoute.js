@@ -8,6 +8,10 @@ userRoute.post('/', userRegister)
 userRoute.post('/profile', userProfile)
 userRoute.post('/login', userLogin)
 userRoute.post('/logout', userLogout)
+userRoute.get('/', (req,res)=>{
+    res.send('user route')
+ 
+})
 
 
 export default userRoute
