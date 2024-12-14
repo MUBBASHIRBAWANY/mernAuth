@@ -69,7 +69,10 @@ export const userLogin = async (req, res) => {
 
         const token = await getAuthontication(user);
         res.cookie("token", token);
-        res.send(token);
+        res.status(201).send({data:{
+            status : "success",
+            token : token
+        });
     } catch (err) {
         console.error(err);
         res.status(500).send(`Server Error: ${err.message}`);
