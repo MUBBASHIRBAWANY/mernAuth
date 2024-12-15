@@ -30,11 +30,11 @@ export const userRegister = async (req, res) => {
 };
 
 export const userProfile = async (req, res) => {
+    
     try {
-        const token = req.cookies?.token || req.headers.authorization?.split(" ")[1];
+        const token = req.body.headers.authorization
         
         if (!token) {
-            console.log("object")
             return res.status(403).send("Invalid Token");
         }
 
@@ -42,6 +42,7 @@ export const userProfile = async (req, res) => {
             if (err) {
                 return res.status(403).send("Invalid Token");
             }
+
             res.status(200).send({ status: true, data: decoded });
         });
     } catch (err) {
@@ -49,7 +50,6 @@ export const userProfile = async (req, res) => {
         res.status(500).send(`Server Error: ${err.message}`);
     }
 };
-
 export const userLogin = async (req, res) => {
     try {
         const { email, password } = req.body;
